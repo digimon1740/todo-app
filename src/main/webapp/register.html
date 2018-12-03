@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- START Head -->
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<!-- Enable responsiveness on mobile devices-->
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+	<title>
+		TodoApp For KaKao
+	</title>
+	<!--START Loader -->
+	<style>
+		#initial-loader {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-wrap: wrap;
+			width: 100%;
+			background: #212121;
+			position: fixed;
+			z-index: 10000;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			transition: opacity .2s ease-out
+		}
+
+		#initial-loader .initial-loader-top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			width: 200px;
+			border-bottom: 1px solid #2d2d2d;
+			padding-bottom: 5px
+		}
+
+		#initial-loader .initial-loader-top > * {
+			display: block;
+			flex-shrink: 0;
+			flex-grow: 0
+		}
+
+		#initial-loader .initial-loader-bottom {
+			padding-top: 10px;
+			color: #5C5C5C;
+			font-family: -apple-system, "Helvetica Neue", Helvetica, "Segoe UI", Arial, sans-serif;
+			font-size: 12px
+		}
+
+		@keyframes spin {
+			100% {
+				transform: rotate(360deg)
+			}
+		}
+
+		#initial-loader .loader g {
+			transform-origin: 50% 50%;
+			animation: spin .5s linear infinite
+		}
+
+		body.loading {
+			overflow: hidden !important
+		}
+
+		body.loaded #initial-loader {
+			opacity: 0
+		}
+	</style>
+	<!--END Loader-->
+	<!-- SCSS Output -->
+	<link rel="stylesheet" href="/assets/stylesheets/app.min.e0bb64e7.css">
+
+	<!-- START Favicon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="/assets/images/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/assets/images/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/assets/images/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/images/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/assets/images/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/assets/images/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/assets/images/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/assets/images/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="/assets/images/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/assets/images/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicons/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/assets/images/favicons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- END Favicon -->
+</head>
+<!-- END Head -->
+<body class="sidebar-disabled navbar-disabled footer-disabled loading">
+<div id="initial-loader">
+	<div>
+		<div class="initial-loader-top">
+			<img class="initial-loader-logo" src="/assets/images/spin-logo-inverted.png" alt="Loader">
+			<div class="loader loader--style1">
+				<svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="30px" height="30px" viewbox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <g>
+                        <path fill="#2d2d2d" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z">
+                        <path fill="#2c97de" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z">
+
+                    </g>
+                </svg>
+			</div>
+		</div>
+		<div class="initial-loader-bottom">
+			Loading. Please Wait. <i class="fa fa-cricle" style="opacity: 0"></i>
+		</div>
+	</div>
+</div>
+
+<div class="main-wrap">
+
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-md-4 col-md-offset-4">
+					<div class="panel panel-default b-a-2 no-bg b-gray-dark">
+						<div class="panel-heading text-center">
+							<h3>TodoApp</h3>
+						</div>
+						<div class="panel-body">
+							<h2 class="text-center f-w-300 m-b-0">회원가입</h2>
+							<form name="registerForm" method="post">
+								<div class="form-group">
+									<label>아이디</label>
+									<input name="name" type="text" class="form-control" placeholder="아이디를 입력해주세요.">
+								</div>
+								<div class="form-group">
+									<label>비밀번호 (8자리 이상)</label>
+									<input name="password" type="password" class="form-control" placeholder="비밀번호를 입력해주세요." required>
+								</div>
+								<div class="form-group">
+									<label>비밀번호 확인</label>
+									<input name="confirmPassword" type="password" class="form-control" placeholder="비밀번호를 한번더 입력해주세요." required>
+								</div>
+								<input type="submit" href="#" role="button" class="btn m-b-2 btn-block btn-primary" value="등록신청">
+							</form>
+						</div>
+					</div>
+					<p class="text-gray-light text-center"><strong>TodoApp for KaKao </strong> <span class="text-gray-light">&#xA9; 2018. Made by <i
+							class="fa fa-fw fa-heart text-danger"></i> Tony Lee</span></p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<script src="/js/lib/jquery-2.1.1.js"></script>
+<script>
+	// Hide loader
+	(() => {
+		let bodyElement = document.querySelector('body');
+		bodyElement.classList.add('loading');
+
+		document.addEventListener('readystatechange', () => {
+			if (document.readyState === 'complete') {
+				let bodyElement = document.querySelector('body');
+				let loaderElement = document.querySelector('#initial-loader');
+
+				bodyElement.classList.add('loaded');
+				setTimeout(() => {
+					bodyElement.removeChild(loaderElement);
+					bodyElement.classList.remove('loading', 'loaded');
+				}, 200);
+			}
+		});
+
+		let registerForm = document.querySelector("[name=registerForm]");
+		registerForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			let name = document.querySelector("[name=name]");
+			let password = document.querySelector("[name=password]");
+			let confirmPassword = document.querySelector("[name=confirmPassword]");
+
+			if (!password.value || password.value.length < 8) {
+				alert("비밀번호는 최소한 8자리 이상이어야합니다.");
+				password.focus();
+				return false;
+			}
+			if (!confirmPassword.value || confirmPassword.value.length < 8) {
+				alert("비밀번호는 최소한 8자리 이상이어야합니다.");
+				confirmPassword.focus();
+				return false;
+			}
+			if (password.value !== confirmPassword.value) {
+				alert("비밀번호를 확인해주세요.");
+				password.focus();
+				return false;
+			}
+
+			$.ajax({
+				url: '/users/register',
+				contentType: 'application/json',
+				method: 'post',
+				data: JSON.stringify({
+					name: $.trim(name.value),
+					password: $.trim(password.value),
+				}),
+				success: () => location.href = '/',
+				error: (response) => {
+					if (!response.responseJSON) {
+						alert("오류가 발생하였습니다. 시스템관리자에게 연락해주세요.");
+						return;
+					}
+					alert(response.responseJSON.message);
+				}
+			});
+			return false;
+		});
+	})();
+</script>
+
+</body>
+
+</html>

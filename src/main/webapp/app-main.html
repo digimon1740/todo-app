@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- START Head -->
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<!-- Enable responsiveness on mobile devices-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+	<title>
+		TodoApp For KaKao
+	</title>
+	<!--START Loader -->
+	<link rel="stylesheet" href="css/default.css">
+	<!--END Loader-->
+	<!-- SCSS Output -->
+	<!-- build:css assets/stylesheets/app.min.css -->
+	<link rel="stylesheet" href="assets/stylesheets/bootstrap.css">
+	<link rel="stylesheet" href="assets/stylesheets/app.css">
+	<link rel="stylesheet" href="assets/stylesheets/plugins.css">
+	<!-- endbuild -->
+
+	<!-- START Favicon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicons/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicons/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicons/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicons/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/images/favicons/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="assets/images/favicons/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+	<!-- END Favicon -->
+
+	<link rel="stylesheet" href="assets/vendor/css/lib.min.css">
+	<!-- JS -->
+	<script src="assets/vendor/js/lib.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	<script type="text/javascript" src="https://static.cryptowat.ch/assets/scripts/embed.bundle.js"></script>
+	<!--<script src="assets/vendor/js/moment.min.js"></script>-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.13/moment-timezone-with-data-2012-2022.min.js"></script>
+	<script data-main="app/main" src="js/lib/require-2.1.15.min.js"></script>
+</head>
+<!-- END Head -->
+
+<body class="">
+
+<div class="main-wrap">
+	<nav class="navigation">
+		<!-- START Navbar -->
+		<div class="navbar-inverse navbar navbar-fixed-top">
+			<ng-include src="'partial/layout/header.html'" ng-controller="InitCtrl"></ng-include>
+		</div>
+		<!-- END Navbar -->
+
+		<!-- START Sidebars -->
+		<!--<aside class="navbar-default sidebar">-->
+			<!--<ng-include src="'partial/layout/lnb.html'" ng-controller="InitCtrl"></ng-include>-->
+		<!--</aside>-->
+		<!-- END Sidebars -->
+	</nav>
+
+	<!-- content layout -->
+	<div ng-view id="content-view" class="content">
+		<!-- content template area -->
+	</div>
+
+	<!-- START Footer -->
+	<footer>
+		<div class="container-fluid">
+			<p class="text-gray-dark">
+				<strong>TodoApp For KaKao </strong>
+				<span class="text-gray-light">&#xA9; 2018. Made by <i class="fa fa-fw fa-heart text-danger"></i> Tony Lee</span>
+			</p>
+		</div>
+	</footer>
+	<!-- END Footer -->
+
+</div>
+</body>
+
+</html>
