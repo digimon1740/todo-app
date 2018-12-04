@@ -2,6 +2,8 @@
 
 Lombok 플러그인이 설치되어있어야합니다.
 테스트의 편의를 위하여 Embedded Database 를 사용하였습니다.
+애플리케이션 로딩시 pom.xml 에서 ```<maven.test.skip>true</maven.test.skip>``` 
+으로 애플리케이션 로딩시 test goal 은 skip 한 상태입니다.
 
 * Java8
 * Spring Boot 2.1 
