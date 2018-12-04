@@ -2,7 +2,7 @@
 
 define(function () {
 
-	function controller($scope, $routeParams, UserService, BoardService, BoardMovingService) {
+	function controller($scope, $routeParams, UserService, BoardService, BoardMovingService, $modal) {
 		$scope.boards = [];
 		$scope.emptyBoard = {
 			content: '',
@@ -13,6 +13,7 @@ define(function () {
 		$scope.remove = remove;
 		$scope.up = up;
 		$scope.down = down;
+		$scope.editView = editView;
 
 		function fetchBoards() {
 			BoardService.list({}, (data) => {
@@ -69,10 +70,22 @@ define(function () {
 			}, fetchBoards);
 		}
 
+		function editView(board) {
+			$modal.open({
+				templateUrl: '../../../partial/board/edit.html',
+				controller: 'BoardEditCtrl',
+				windowClass: 'modal inmodal fade',
+				size: 'lg',
+				resolve: {
+					board: () => board,
+				}
+			});
+		}
+
 
 	}
 
-	controller.$inject = ['$scope', '$routeParams', 'UserService', 'BoardService', 'BoardMovingService'];
+	controller.$inject = ['$scope', '$routeParams', 'UserService', 'BoardService', 'BoardMovingService', '$modal'];
 	return controller;
 
 });

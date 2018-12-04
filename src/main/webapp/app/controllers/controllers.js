@@ -10,6 +10,7 @@ define(function (require) {
 
 	// Board
 	controllers.controller('BoardCtrl', require('controllers/board/board.controller'));
+	controllers.controller('BoardEditCtrl', require('controllers/board/board.edit.controller'));
 
 	controllers.run(['$rootScope', function ($rootScope) {
 		$rootScope.sampleParam = "value";

@@ -57,16 +57,18 @@ public class BoardService {
 
 		int maxOrdinal = boardRepository.findMaxOrdinalByUserId(user.getId());
 		board.setOrdinal(maxOrdinal + 1);
-		return boardRepository.save(board);
+		boardRepository.save(board);
+		return board;
 	}
 
 	@Transactional
-	public void modify(Board board, Long userId) {
+	public Board modify(Board board, Long userId) {
 		Assert.notNull(board, messageSourceService.getMessage("board.not.exist"));
 
 		Board old = findByIdAndUserIdOrElseThrow(board.getId(), userId);
 		old.setContent(board.getContent());
 		board.setModifiedTime(LocalDateTime.now());
+		return board;
 	}
 
 	@Transactional

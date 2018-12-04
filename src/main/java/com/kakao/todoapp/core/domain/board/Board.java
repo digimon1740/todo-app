@@ -2,10 +2,7 @@ package com.kakao.todoapp.core.domain.board;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.kakao.todoapp.core.domain.user.User;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -15,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "boards")
 public class Board {
@@ -33,9 +31,6 @@ public class Board {
 	@Column(name = "content")
 	private String content;
 
-	@Column(name = "attachments")
-	private Attachments attachments;
-
 	@NotNull
 	@Column(name = "ordinal")
 	private int ordinal;
@@ -45,4 +40,15 @@ public class Board {
 
 	@Column(name = "reg_time")
 	private LocalDateTime regTime;
+
+	public Board(String content, int ordinal) {
+		this.content = content;
+		this.ordinal = ordinal;
+	}
+
+	public Board(User user, String content, int ordinal) {
+		this.user = user;
+		this.content = content;
+		this.ordinal = ordinal;
+	}
 }

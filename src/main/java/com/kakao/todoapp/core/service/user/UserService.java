@@ -59,7 +59,8 @@ public class UserService {
 		}
 		user.setPassword(PasswordEncodeUtils.encodePassword(user.getPassword()));
 		user.setRegTime(LocalDateTime.now());
-		return userRepository.save(user);
+		userRepository.save(user);
+		return user;
 	}
 
 	@Transactional
