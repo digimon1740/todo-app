@@ -13,6 +13,6 @@ public class HelloController {
 
 	@GetMapping(value = "/main")
 	public String main() {
-		return "redirect:main.html";
+		return "redirect:app-main.html";
 	}
 }
