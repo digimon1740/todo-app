@@ -18,55 +18,56 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-	private UserRepository userRepository;
+    private UserRepository userRepository;
 
-	private MessageSourceService messageSourceService;
+    private MessageSourceService messageSourceService;
 
-	@Autowired
-	public UserService(UserRepository userRepository,
-	                   MessageSourceService messageSourceService) {
-		this.userRepository = userRepository;
-		this.messageSourceService = messageSourceService;
-	}
+    @Autowired
+    public UserService(UserRepository userRepository,
+                       MessageSourceService messageSourceService) {
+        this.userRepository = userRepository;
+        this.messageSourceService = messageSourceService;
+    }
 
-	@Transactional(readOnly = true)
-	public User findByPrincipal(Principal principal) {
-		return Optional.ofNullable(principal)
-			.map(p -> findByName(p.getName())).orElse(null);
-	}
+    @Transactional(readOnly = true)
+    public User findByPrincipal(Principal principal) {
+        return Optional.ofNullable(principal)
+                .map(p -> findByName(p.getName())).orElse(null);
+    }
 
-	@Transactional(readOnly = true)
-	public User findByName(String name) {
-		return Optional.ofNullable(name)
-			.map(userRepository::findByName).orElse(null);
-	}
+    @Transactional(readOnly = true)
+    public User findByName(String name) {
+        return Optional.ofNullable(name)
+                .map(userRepository::findByName).orElse(null);
+    }
 
-	@Transactional(readOnly = true)
-	public User findByNameOrElseThrow(String name) {
-		return Optional.ofNullable(name)
-			.map(userRepository::findByName)
-			.orElseThrow(() -> new ResourceNotFoundException(messageSourceService.getMessage("user.not.exist")));
-	}
+    @Transactional(readOnly = true)
+    public User findByNameOrElseThrow(String name) {
+        return Optional.ofNullable(name)
+                .map(userRepository::findByName)
+                .orElseThrow(() -> new ResourceNotFoundException(messageSourceService.getMessage("user.not.exist")));
+    }
 
-	@Transactional
-	public User create(User user) {
-		Assert.hasText(user.getName(), messageSourceService.getMessage("user.name.invalid"));
-		Assert.hasText(user.getPassword(), messageSourceService.getMessage("user.password.invalid"));
+    @Transactional
+    public User create(User user) {
+        Assert.notNull(user, messageSourceService.getMessage("user.name.invalid"));
+        Assert.hasText(user.getName(), messageSourceService.getMessage("user.name.invalid"));
+        Assert.hasText(user.getPassword(), messageSourceService.getMessage("user.password.invalid"));
 
-		User exists = findByName(user.getName());
-		if (exists != null) {
-			throw new ResourceExistsException(messageSourceService.getMessage("user.exists"));
-		}
-		user.setPassword(PasswordEncodeUtils.encodePassword(user.getPassword()));
-		user.setRegTime(LocalDateTime.now());
-		userRepository.save(user);
-		return user;
-	}
+        User exists = findByName(user.getName());
+        if (exists != null) {
+            throw new ResourceExistsException(messageSourceService.getMessage("user.exists"));
+        }
+        user.setPassword(PasswordEncodeUtils.encodePassword(user.getPassword()));
+        user.setRegTime(LocalDateTime.now());
+        userRepository.save(user);
+        return user;
+    }
 
-	@Transactional
-	public void stampLoginTime(String name) {
-		Assert.hasText(name, messageSourceService.getMessage("user.name.invalid"));
-		User user = findByNameOrElseThrow(name);
-		user.setLastLoginTime(LocalDateTime.now());
-	}
+    @Transactional
+    public void stampLoginTime(String name) {
+        Assert.hasText(name, messageSourceService.getMessage("user.name.invalid"));
+        User user = findByNameOrElseThrow(name);
+        user.setLastLoginTime(LocalDateTime.now());
+    }
 }
