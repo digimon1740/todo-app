@@ -43,10 +43,11 @@ public class BoardController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Board>> findAll(Principal principal) {
+    public ResponseEntity<List<BoardDto>> findAll(Principal principal) {
         User user = userService.findByPrincipal(principal);
-        List<Board> boards = modelMapperUtils.convertToDto(boardService.findAllByUserIdOrderByOrdinal(user.getId()),
-                                                           new TypeToken<List<Board>>() {}.getType());
+        List<BoardDto> boards = modelMapperUtils.convertToDto(boardService.findAllByUserIdOrderByOrdinal(user.getId()),
+                                                              new TypeToken<List<Board>>() {
+                                                              }.getType());
         return new ResponseEntity<>(boards, HttpStatus.OK);
     }
 
