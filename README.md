@@ -1,4 +1,4 @@
-## TodoApp For KaKao
+## TodoApp
 
 Lombok 플러그인이 설치되어있어야합니다.
 테스트의 편의를 위하여 Embedded Database 를 사용하였습니다.
