@@ -85,7 +85,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Board findByUserIdAndOrdinalOrElseThrow(Long userId, int ordinal) {
-        return Optional.ofNullable(boardRepository.findByUserIdAndOrdinal(userId, ordinal))
+        return boardRepository.findByUserIdAndOrdinal(userId, ordinal)
                 .orElseThrow(() -> new ResourceNotFoundException(messageSourceService.getMessage("board.invalid")));
     }
 
