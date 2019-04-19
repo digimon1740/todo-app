@@ -37,14 +37,12 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public User findByName(String name) {
-        return Optional.ofNullable(name)
-                .map(userRepository::findByName).orElse(null);
+        return userRepository.findByName(name).orElse(null);
     }
 
     @Transactional(readOnly = true)
     public User findByNameOrElseThrow(String name) {
-        return Optional.ofNullable(name)
-                .map(userRepository::findByName)
+        return userRepository.findByName(name)
                 .orElseThrow(() -> new ResourceNotFoundException(messageSourceService.getMessage("user.not.exist")));
     }
 

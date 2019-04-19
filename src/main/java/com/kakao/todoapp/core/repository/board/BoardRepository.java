@@ -18,7 +18,7 @@ public interface BoardRepository extends JpaRepository<Board, Long> {
 
 	Optional<Board> findByUserIdAndOrdinal(Long userId, int ordinal);
 
-	List<Board> findAllByUserIdOrderByOrdinal(Long userId);
+	Optional<List<Board>> findAllByUserIdOrderByOrdinal(Long userId);
 
 	@Query("select coalesce(max(b.ordinal),0) from Board b where b.user.id = :userId")
 	int findMaxOrdinalByUserId(@Param("userId") Long userId);

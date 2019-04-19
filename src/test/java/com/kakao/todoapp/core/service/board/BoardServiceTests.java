@@ -74,7 +74,7 @@ public class BoardServiceTests {
 		long userId = 1L;
 		User user = new User(USER_NAME, "password", Role.ROLE_USER);
 		given(this.boardRepository.findAllByUserIdOrderByOrdinal(userId))
-			.willReturn(Collections.singletonList(new Board(user, CONTENT, 0)));
+			.willReturn(Optional.of(Collections.singletonList(new Board(user, CONTENT, 0))));
 
 		List<Board> actual = boardService.findAllByUserIdOrderByOrdinal(userId);
 		assertThat(actual).size().isEqualTo(1);

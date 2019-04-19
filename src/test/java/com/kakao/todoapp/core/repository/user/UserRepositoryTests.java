@@ -12,6 +12,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -33,7 +35,7 @@ public class UserRepositoryTests {
 
 	@Test
 	public void findUserShouldReturnUser() throws Exception {
-		User actual = this.userRepository.findByName("tony");
+		User actual = this.userRepository.findByName("tony").orElse(null);
 		assertThat(actual).isNotNull();
 		assertThat(actual.getName()).isEqualTo("tony");
 		log.info("actual user : {}", actual);
@@ -41,7 +43,7 @@ public class UserRepositoryTests {
 
 	@Test
 	public void findUserShouldReturnNull() throws Exception {
-		User user = this.userRepository.findByName("tony2");
+		User user = this.userRepository.findByName("tony2").orElse(null);
 		assertThat(user).isNull();
 	}
 }

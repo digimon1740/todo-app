@@ -13,6 +13,8 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.BDDMockito.given;
@@ -38,7 +40,7 @@ public class UserServiceTests {
 
     @Test
     public void findByNameTest() {
-        given(this.userRepository.findByName(USER_NAME))
+        given(this.userRepository.findByName(USER_NAME).orElse(null))
                 .willReturn(new User(USER_NAME, PasswordEncodeUtils.encodePassword("password"), Role.ROLE_USER));
 
         User actual = userService.findByName(USER_NAME);
@@ -53,7 +55,7 @@ public class UserServiceTests {
     @Test
     public void findByNameOrElseThrowTest() {
         given(this.userRepository.findByName("none"))
-                .willReturn(new User("none", PasswordEncodeUtils.encodePassword("password"), Role.ROLE_USER));
+                .willReturn(Optional.of(new User("none", PasswordEncodeUtils.encodePassword("password"), Role.ROLE_USER)));
 
         assertThatThrownBy(() -> userService.findByNameOrElseThrow(USER_NAME))
                 .isInstanceOf(ResourceNotFoundException.class);

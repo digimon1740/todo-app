@@ -41,8 +41,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public List<Board> findAllByUserIdOrderByOrdinal(Long userId) {
-        return Optional.ofNullable(boardRepository.findAllByUserIdOrderByOrdinal(userId))
-                .orElse(Collections.emptyList());
+        return boardRepository.findAllByUserIdOrderByOrdinal(userId).orElse(Collections.emptyList());
     }
 
     @Transactional
